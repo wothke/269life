@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+	a tribute to "269life"
+
+ 	Copyright (C) 2017 Juergen Wothke
+-->
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<title>269life</title>
+
+<meta name="description" content="WebGL based raymarching with other 3D elements">
+<meta name="author" content="Juergen Wothke">
+<meta name="keywords" content="Web Audio API, HTML5, JavaScript, THREE.js">
+
+<link rel="image_src" href="screenshot.gif" />
+<meta property="og:image" content="http://www.wothke.ch/269life/screenshot.gif" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2" />
+<link type="image/x-icon" href="favicon.ico" />
+<link href="res/269life.css" rel="stylesheet" type="text/css">
+
+<script src="./stdlib/three-plus.min.js"></script>
+<!--script src="./source_code/stdlib/three.min.js"></script>
+<script src="./source_code/stdlib/earcut.js"></script>
+<script src="./source_code/stdlib/d3-threeD.js"></script>
+<script src="./source_code/stdlib/nprogress.js"></script-->
+<!--script src="./269life.min.js"></script-->
+<script src="./util.min.js"></script>
+<!--script src="./source_code/util.common.js"></script>
+<script src="./source_code/util.3d-text.js"></script>
+<script src="./source_code/util.box2kleinians.js"></script-->
+
+<script src="./269life.min.js?v=1.1"></script>
+<!--script src="./source_code/269life-config.js"></script>
+<script src="./source_code/269life.kleinians.js"></script>
+<script src="./source_code/269life.shaders.js"></script>
+<script src="./source_code/269life.animation.js"></script>
+<script src="./source_code/269life.js"></script-->
+</head>
+<body>
+<div id="mainDiv"><canvas id="canvasID" width="640" height="480"></canvas></div>
+<div id="isloading"></div>
+<div id="just-use-the-fucking-font"> </div>
+<div id="progress-bar"></div>
+
+<script type="text/javascript">
+
+// perfect example for braindead web browser design: you have to use an additional
+// FontLoader.min.js lib (that is bigger than the font you are using) or some
+// experimental FontFace feature just to prevent that a garbage page is shown 
+// before the font has been actually loaded..
+// ahh right.. it is all in the name of "more responsive web pages" .. 
+
+// update: the FontLoader.min.js approach does not work in that fucking shit browser 
+// Chrome: it will correctly use the font for the normal HTML content - but NOT on 
+// the canvas (even when it already displays the font on the page..) better still, 
+// the same page is displayed correctly as long as it is loaded from localhost.. 
+// the below experimental Chrome feature seems to be the only way to make Chrome 
+// reliably use the font on canvas.. one cannot help but to wonder where all those 
+// clueless idiots working for Google come from!
+var myFont = new FontFace('Mountains of Christmas', 'url(res/Mountains.woff2)');
+
+myFont.load().then(function(font){
+	document.fonts.add(font);
+
+	window.main= new Main("canvasID");
+	main.start();
+});
+
+
+
+</script>
+
+
+</body></html>
